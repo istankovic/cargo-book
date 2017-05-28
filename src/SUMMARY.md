@@ -1,7 +1,16 @@
 # Summary
 
 * [Getting Started](getting-started.md)
+    * [Installation](01-01-installation.md)
+    * [First steps with Cargo](01-02-first-steps.md)
 * [Guide](guide.md)
+    * [Why Cargo exists](02-01-why-cargo-exists.md)
+    * [Creating a new project](02-02-creating-a-new-project.md)
+    * [Working on an existing Cargo project](02-03-working-on-an-existing-project.md)
+    * [Dependencies](02-04-dependencies.md)
+    * [Project layout](02-05-project-layout.md)
+    * [Tests](02-06-tests.md)
+    * [Continuous Integration](02-07-continuous-integration.md)
 * [Specifying Dependencies](specifying-dependencies.md)
 * [Publishing on crates.io](crates-io.md)
 * [FAQ](faq.md)
