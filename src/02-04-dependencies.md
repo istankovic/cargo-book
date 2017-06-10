@@ -44,21 +44,23 @@ regex = "0.1.41"
 Re-run `cargo build`, and Cargo will fetch the new dependencies and all of
 their dependencies, compile them all, and update the `Cargo.lock`:
 
-<pre><code class="language-shell"><span class="gp">$</span> cargo build
-<span style="font-weight: bold" class="s1">    Updating</span> registry `https://github.com/rust-lang/crates.io-index`
-<span style="font-weight: bold" class="s1"> Downloading</span> memchr v0.1.5
-<span style="font-weight: bold" class="s1"> Downloading</span> libc v0.1.10
-<span style="font-weight: bold" class="s1"> Downloading</span> regex-syntax v0.2.1
-<span style="font-weight: bold" class="s1"> Downloading</span> memchr v0.1.5
-<span style="font-weight: bold" class="s1"> Downloading</span> aho-corasick v0.3.0
-<span style="font-weight: bold" class="s1"> Downloading</span> regex v0.1.41
-<span style="font-weight: bold" class="s1">   Compiling</span> memchr v0.1.5
-<span style="font-weight: bold" class="s1">   Compiling</span> libc v0.1.10
-<span style="font-weight: bold" class="s1">   Compiling</span> regex-syntax v0.2.1
-<span style="font-weight: bold" class="s1">   Compiling</span> memchr v0.1.5
-<span style="font-weight: bold" class="s1">   Compiling</span> aho-corasick v0.3.0
-<span style="font-weight: bold" class="s1">   Compiling</span> regex v0.1.41
-<span style="font-weight: bold" class="s1">   Compiling</span> hello_world v0.1.0 (file:///path/to/project/hello_world)</code></pre>
+```shell
+$ cargo build
+      Updating registry `https://github.com/rust-lang/crates.io-index`
+   Downloading memchr v0.1.5
+   Downloading libc v0.1.10
+   Downloading regex-syntax v0.2.1
+   Downloading memchr v0.1.5
+   Downloading aho-corasick v0.3.0
+   Downloading regex v0.1.41
+     Compiling memchr v0.1.5
+     Compiling libc v0.1.10
+     Compiling regex-syntax v0.2.1
+     Compiling memchr v0.1.5
+     Compiling aho-corasick v0.3.0
+     Compiling regex v0.1.41
+     Compiling hello_world v0.1.0 (file:///path/to/project/hello_world)
+```
 
 Our `Cargo.lock` contains the exact information about which revision of all of
 these dependencies we used.
@@ -81,6 +83,8 @@ fn main() {
 
 Running it will show:
 
-<pre><code class="language-shell"><span class="gp">$</span> cargo run
-<span style="font-weight: bold" class="s1">     Running</span> `target/hello_world`
-Did our date match? true</code></pre>
+```shell
+$ cargo run
+   Running `target/hello_world`
+Did our date match? true
+```

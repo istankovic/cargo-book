@@ -127,7 +127,7 @@ re-calculate the dependencies and update things for us:
 
 ```shell
 $ cargo update           # updates all dependencies
-$ cargo update -p rand  # updates just “rand”
+$ cargo update -p rand   # updates just “rand”
 ```
 
 This will write out a new `Cargo.lock` with the new version information. Note
