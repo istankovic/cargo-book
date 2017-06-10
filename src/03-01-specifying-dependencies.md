@@ -1,4 +1,4 @@
-% Specifying Dependencies
+## Specifying Dependencies
 
 Your crates can depend on other libraries from [crates.io], `git` repositories, or
 subdirectories on your local file system. You can also temporarily override the
@@ -7,7 +7,7 @@ dependency that you are working on locally. You can have different
 dependencies for different platforms, and dependencies that are only used during
 development. Let's take a look at how to do each of these.
 
-# Specifying dependencies from crates.io
+### Specifying dependencies from crates.io
 
 Cargo is configured to look for dependencies on [crates.io] by default. Only
 the name and a version string are required in this case. In [the cargo
@@ -24,7 +24,7 @@ if we had specified `"^0.1.12"`, which is called a caret requirement.
 
 [semver]: https://github.com/steveklabnik/semver#requirements
 
-## Caret requirements
+### Caret requirements
 
 **Caret requirements** allow SemVer compatible updates to a specified version.
 An update is allowed if the new version number does not modify the left-most
@@ -52,7 +52,7 @@ treat a `0.x.y` release in the same way as a `1.x.y` release: that is, `y` is
 incremented for bugfixes, and `x` is incremented for new features. As such,
 Cargo considers a `0.x.y` and `0.x.z` version, where `z > y`, to be compatible.
 
-## Tilde requirements
+### Tilde requirements
 
 **Tilde requirements** specify a minimal version with some ability to update.
 If you specify a major, minor, and patch version or only a major and minor
@@ -67,7 +67,7 @@ version, then minor- and patch-level changes are allowed.
 ~1 := >=1.0.0 <2.0.0
 ```
 
-## Wildcard requirements
+### Wildcard requirements
 
 **Wildcard requirements** allow for any version where the wildcard is
 positioned.
@@ -80,7 +80,7 @@ positioned.
 1.2.* := >=1.2.0 <1.3.0
 ```
 
-## Inequality requirements
+### Inequality requirements
 
 **Inequality requirements** allow manually specifying a version range or an
 exact version to depend on.
@@ -94,12 +94,12 @@ Here are some examples of inequality requirements:
 = 1.2.3
 ```
 
-## Multiple requirements
+### Multiple requirements
 
 Multiple version requirements can also be separated with a comma, e.g. `>= 1.2,
 < 1.5`.
 
-# Specifying dependencies from `git` repositories
+### Specifying dependencies from `git` repositories
 
 To depend on a library located in a `git` repository, the minimum information
 you need to specify is the location of the repository with the `git` key:
@@ -124,7 +124,7 @@ the latest commit on a branch named `next`:
 rand = { git = "https://github.com/rust-lang-nursery/rand", branch = "next" }
 ```
 
-# Specifying path dependencies
+### Specifying path dependencies
 
 Over time, our `hello_world` project from [the guide](guide.html) has grown
 significantly in size! It’s gotten to the point that we probably want to
@@ -163,7 +163,7 @@ the dependencies line as well:
 hello_utils = { path = "hello_utils", version = "0.1.0" }
 ```
 
-# Overriding dependencies
+### Overriding dependencies
 
 Sometimes you may want to override one of Cargo’s dependencies. For example
 let's say you're working on a project using the
@@ -298,7 +298,7 @@ Cargo how to find local unpublished crates.
 More information about local configuration can be found in the [configuration
 documentation](config.html).
 
-# Platform specific dependencies
+### Platform specific dependencies
 
 
 Platform-specific dependencies take the same format, but are listed under a
@@ -350,7 +350,7 @@ openssl = "1.0.1"
 native = { path = "native/x86_64" }
 ```
 
-# Development dependencies
+### Development dependencies
 
 You can add a `[dev-dependencies]` section to your `Cargo.toml` whose format
 is equivalent to `[dependencies]`:
@@ -378,7 +378,7 @@ mio = "0.0.1"
 
 [crates.io]: https://crates.io/
 
-# Build dependencies
+### Build dependencies
 
 You can depend on other Cargo-based crates for use in your build scripts.
 Dependencies are declared through the `build-dependencies` section of the
@@ -397,7 +397,7 @@ itself and its build script are built separately, so their
 dependencies need not coincide. Cargo is kept simpler and cleaner by
 using independent dependencies for independent purposes.
 
-# Choosing features
+### Choosing features
 
 If a package you depend on offers conditional features, you can
 specify which to use:
