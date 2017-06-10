@@ -47,9 +47,10 @@ fn main() {
 
 Cargo generated a “hello world” for us. Let’s compile it:
 
-<pre><code class="language-shell"><span class="gp">$</span> cargo build
-<span style="font-weight: bold"
-class="s1">   Compiling</span> hello_world v0.1.0 (file:///path/to/project/hello_world)</code></pre>
+```shell
+$ cargo build
+   Compiling hello_world v0.1.0 (file:///path/to/project/hello_world)
+```
 
 And then run it:
 
@@ -58,31 +59,53 @@ $ ./target/debug/hello_world
 Hello, world!
 ```
 
-We can also use `cargo run` to compile and then run it, all in one step (You
+We can also use `cargo run` to compile and then run it, all in one step (you
 won't see the `Compiling` line if you have not made any changes since you last
 compiled):
 
-<pre><code class="language-shell"><span class="gp">$</span> cargo run
-<span style="font-weight: bold"
-class="s1">   Compiling</span> hello_world v0.1.0 (file:///path/to/project/hello_world)
-<span style="font-weight: bold"
-class="s1">   Running</span> `target/debug/hello_world`
-Hello, world!</code></pre>
+```shell
+$ cargo run
+   Compiling hello_world v0.1.0 (file:///path/to/project/hello_world)
+     Running `target/debug/hello_world`
+Hello, world!
+```
 
-You’ll now notice a new file, `Cargo.lock`. It contains information about our
-dependencies. Since we don’t have any yet, it’s not very interesting.
+You'll notice several new files and directories have been created:
+```shell
+$ tree .
+.
+├── Cargo.lock
+├── Cargo.toml
+├── src
+│   └── main.rs
+└── target
+    └── debug
+        ├── build
+        ├── deps
+        │   └── hello_world-2386c2fd0156916f
+        ├── examples
+        ├── hello_world
+        ├── hello_world.d
+        ├── incremental
+        └── native
 
-Once you’re ready for release, you can use `cargo build --release` to compile your files with optimizations turned on:
+8 directories, 6 files
+```
 
-<pre><code class="language-shell"><span class="gp">$</span> cargo build --release
-<span style="font-weight: bold"
-class="s1">   Compiling</span> hello_world v0.1.0 (file:///path/to/project/hello_world)</code></pre>
+The `Cargo.lock` file contains information about our dependencies. Since we
+don’t have any yet, it’s not very interesting. The `target` directory contains
+all the build products, and, as can be seen, Cargo produces debug builds by
+default. You can use `cargo build --release` to compile your files with
+optimizations turned on:
 
-`cargo build --release` puts the resulting binary in
-`target/release` instead of `target/debug`.
+```shell
+$ cargo build --release
+   Compiling hello_world v0.1.0 (file:///path/to/project/hello_world)
+```
 
-Compiling in debug mode is the default for development-- compilation time is
+`cargo build --release` puts the resulting binary in `target/release`
+instead of `target/debug`.
+
+Compiling in debug mode is the default for development -- compilation time is
 shorter since the compiler doesn't do optimizations, but the code will run
 slower. Release mode takes longer to compile, but the code will run faster.
-
-
