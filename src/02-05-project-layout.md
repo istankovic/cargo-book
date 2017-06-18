@@ -30,7 +30,7 @@ Cargo project:
 * Benchmarks go in the `benches` directory.
 
 These are explained in more detail in the [manifest
-description](manifest.html#the-project-layout).
+description](03-02-manifest.html#the-project-layout).
 
 ## Cargo.toml vs Cargo.lock
 
@@ -132,5 +132,5 @@ $ cargo update -p rand   # updates just “rand”
 
 This will write out a new `Cargo.lock` with the new version information. Note
 that the argument to `cargo update` is actually a
-[Package ID Specification](pkgid-spec.html) and `rand` is just a short
+[Package ID Specification](03-07-pkgid-spec.html) and `rand` is just a short
 specification.

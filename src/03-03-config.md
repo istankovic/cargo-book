@@ -1,10 +1,10 @@
-% Configuration
+## Configuration
 
 This document will explain how Cargo’s configuration system works, as well as
 available keys or configuration.  For configuration of a project through its
-manifest, see the [manifest format](manifest.html).
+manifest, see the [manifest format](03-02-manifest.html).
 
-# Hierarchical structure
+### Hierarchical structure
 
 Cargo allows to have local configuration for a particular project or global
 configuration (like git). Cargo also extends this ability to a hierarchical
@@ -21,7 +21,7 @@ With this structure you can specify local configuration per-project, and even
 possibly check it into version control. You can also specify personal default
 with a configuration file in your home directory.
 
-# Configuration format
+### Configuration format
 
 All configuration is currently in the [TOML format][toml] (like the manifest),
 with simple key-value pairs inside of sections (tables) which all get merged
@@ -29,7 +29,7 @@ together.
 
 [toml]: https://github.com/toml-lang/toml
 
-# Configuration keys
+### Configuration keys
 
 All of the following keys are optional, and their defaults are listed as their
 value unless otherwise noted.
@@ -119,7 +119,7 @@ rr = "run --release"
 space_example = ["run", "--release", "--", "\"command list\""]
 ```
 
-# Environment variables
+### Environment variables
 
 Cargo can also be configured through environment variables in addition to the
 TOML syntax above. For each configuration key above of the form `foo.bar` the
@@ -133,4 +133,4 @@ environment variables.
 In addition to the system above, Cargo recognizes a few other specific
 [environment variables][env].
 
-[env]: environment-variables.html
+[env]: 03-04-environment-variables.html

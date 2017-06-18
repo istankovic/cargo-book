@@ -186,7 +186,7 @@ uuid = "0.2"
 To override the `rand` dependency of `uuid`, we'll leverage the [`[replace]`
 section][replace-section] of `Cargo.toml` by appending this to the end:
 
-[replace-section]: manifest.html#the-replace-section
+[replace-section]: 03-02-manifest.html#the-replace-section
 
 ```toml
 [replace]
@@ -296,7 +296,7 @@ that have been published to [crates.io]. You cannot use this feature to tell
 Cargo how to find local unpublished crates.
 
 More information about local configuration can be found in the [configuration
-documentation](config.html).
+documentation](03-03-config.html).
 
 ### Platform specific dependencies
 
@@ -411,4 +411,4 @@ features = ["secure-password", "civet"]
 ```
 
 More information about features can be found in the
-[manifest documentation](manifest.html#the-features-section).
+[manifest documentation](03-02-manifest.html#the-features-section).

@@ -33,7 +33,7 @@ This field specifies a file in the repository which is a [build script][1] for
 building native code. More information can be found in the build script
 [guide][1].
 
-[1]: build-script.html
+[1]: 03-05-build-scripts.html
 
 ```toml
 [package]
@@ -182,7 +182,7 @@ assets = "path/to/static"
 
 ### Dependency sections
 
-See the [specifying dependencies page](specifying-dependencies.html) for
+See the [specifying dependencies page](03-01-specifying-dependencies.html) for
 information on the `[dependencies]`, `[dev-dependencies]`, and target-specific
 `[target.*.dependencies]` sections.
 
@@ -613,7 +613,7 @@ other copies. The syntax is similar to the `[dependencies]` section:
 ```
 
 Each key in the `[replace]` table is a [package id
-specification](pkgid-spec.html) which allows arbitrarily choosing a node in the
+specification](03-07-pkgid-spec.html) which allows arbitrarily choosing a node in the
 dependency graph to override. The value of each key is the same as the
 `[dependencies]` syntax for specifying dependencies, except that you can't
 specify features. Note that when a crate is overridden the copy it's overridden
@@ -623,4 +623,4 @@ source (e.g. git or a local path).
 More information about overriding dependencies can be found in the [overriding
 dependencies][replace] section of the documentation.
 
-[replace]: specifying-dependencies.html#overriding-dependencies
+[replace]: 03-01-specifying-dependencies.html#overriding-dependencies
