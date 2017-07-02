@@ -18,10 +18,11 @@ All three of these fields are mandatory.
 Cargo bakes in the concept of [Semantic
 Versioning](http://semver.org/), so make sure you follow some basic rules:
 
-* Before you reach 1.0.0, anything goes.
+* Before you reach 1.0.0, anything goes, but if you make breaking changes,
+  increment the minor version. In Rust, breaking changes include adding fields to
+  structs or variants to enums.
 * After 1.0.0, only make breaking changes when you increment the major version.
-  In Rust, breaking changes include adding fields to structs or variants to
-  enums. Don’t break the build.
+  Don’t break the build.
 * After 1.0.0, don’t add any new public API (no new `pub` anything) in tiny
   versions. Always increment the minor version if you add any new `pub` structs,
   traits, fields, types, functions, methods or anything else.
@@ -40,6 +41,15 @@ building native code. More information can be found in the build script
 # ...
 build = "build.rs"
 ```
+
+#### The `documentation` field (optional)
+
+This field specifies a URL to a website hosting the crate's documentation.
+If no URL is specified in the manifest file, [crates.io][cratesio] will
+automatically link your crate to the corresponding [docs.rs][docsrs] page.
+
+[docsrs]: https://docs.rs/
+[cratesio]: https://crates.io/
 
 #### The `exclude` and `include` fields (optional)
 
@@ -153,6 +163,17 @@ travis-ci = { repository = "...", branch = "master" }
 appveyor = { repository = "...", branch = "master", service = "github" }
 # GitLab: `repository` is required. `branch` is optional; default is `master`
 gitlab = { repository = "...", branch = "master" }
+# Is it maintained resolution time: `repository` is required.
+is-it-maintained-issue-resolution = { repository = "..." }
+# Is it maintained percentage of open issues: `repository` is required.
+is-it-maintained-open-issues = { repository = "..." }
+# Codecov: `repository` is required. `branch` is optional; default is `master`
+# `service` is optional; valid values are `github` (default), `bitbucket`, and
+# `gitlab`.
+codecov = { repository = "...", branch = "master", service = "github" }
+# Coveralls: `repository` is required. `branch` is optional; default is `master`
+# `service` is optional; valid values are `github` (default) and `bitbucket`.
+coveralls = { repository = "...", branch = "master", service = "github" }
 ```
 
 The [crates.io](https://crates.io) registry will render the description, display
@@ -387,7 +408,7 @@ as:
 [workspace]
 
 # Optional key, inferred if not present
-members = ["path/to/member1", "path/to/member2"]
+members = ["path/to/member1", "path/to/member2", "path/to/member3/*"]
 
 # Optional key, empty if not present
 exclude = ["path1", "path/to/dir2"]
@@ -413,9 +434,12 @@ manifest, is responsible for defining the entire workspace. All `path`
 dependencies residing in the workspace directory become members. You can add
 additional packages to the workspace by listing them in the `members` key. Note
 that members of the workspaces listed explicitly will also have their path
-dependencies included in the workspace. Finally, the `exclude` key can be used
-to blacklist paths from being included in a workspace. This can be useful if
-some path dependencies aren't desired to be in the workspace at all.
+dependencies included in the workspace. Sometimes a project may have a lot of
+workspace members and it can be onerous to keep up to date. The path dependency
+can also use [globs][globs] to match multiple paths. Finally, the `exclude`
+key can be used to blacklist paths from being included in a workspace. This can
+be useful if some path dependencies aren't desired to be in the workspace at
+all.
 
 The `package.workspace` manifest key (described above) is used in member crates
 to point at a workspace's root crate. If this key is omitted then it is inferred
@@ -435,7 +459,14 @@ Most of the time workspaces will not need to be dealt with as `cargo new` and
 If your project is an executable, name the main source file `src/main.rs`. If it
 is a library, name the main source file `src/lib.rs`.
 
-Cargo will also treat any files located in `src/bin/*.rs` as executables.
+Cargo will also treat any files located in `src/bin/*.rs` as executables. If your
+executable consists of more than just one source file, you might also use a directory
+inside `src/bin` containing a `main.rs` file which will be treated as an executable
+with a name of the parent directory.
+Do note, however, once you add a `[[bin]]` section ([see
+below](#configuring-a-target)), Cargo will no longer automatically build files
+located in `src/bin/*.rs`.  Instead you must create a `[[bin]]` section for
+each file you want to build.
 
 Your project can optionally contain folders named `examples`, `tests`, and
 `benches`, which Cargo will treat as containing examples,
@@ -447,6 +478,8 @@ integration tests, and benchmarks respectively.
   main.rs        # the main entry point for projects producing executables
   ▾ bin/         # (optional) directory containing additional executables
     *.rs
+  ▾ */           # (optional) directories containing multi-file executables
+    main.rs
 ▾ examples/      # (optional) examples
   *.rs
 ▾ tests/         # (optional) integration tests
@@ -599,7 +632,7 @@ compile packages (dependencies) based on the requirements of the project that
 includes them.
 
 You can read more about the different crate types in the
-[Rust Reference Manual](https://doc.rust-lang.org/reference.html#linkage)
+[Rust Reference Manual](https://doc.rust-lang.org/reference/linkage.html)
 
 ### The `[replace]` Section
 
