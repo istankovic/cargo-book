@@ -201,7 +201,7 @@ document the `[patch]` section here.
 
 Let's say you're working with the [`uuid`] crate but while you're working on it
 you discover a bug. You are, however, quite enterprising so you decide to also
-try out to fix the bug! Originally your manifest will look like:
+try to fix the bug! Originally your manifest will look like:
 
 [`uuid`](https://crates.io/crates/uuid)
 
